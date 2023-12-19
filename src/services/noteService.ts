@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NoteInterface, NewNoteInterface } from "../components/Note/Note.d.js";
 
-const BASE_URL = "http://localhost:3000/notes";
+const BASE_URL = "http://localhost:5001/notes";
 
 const getAllNotes = async () => {
   try {
