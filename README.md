@@ -7,17 +7,37 @@ A simple note board application built with React.
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
 - Create, edit, and delete notes on a virtual board.
-- Responsive design for various screen sizes.
+- Responsive design for desktop and mobile screen sizes.
 
 ## Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/react-note-board.git
+   git clone https://github.com/NoamNC/note-taker-frontend.git
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd react-note-board
+
+3. 
+ ```bash
+ npm install
+
+
+
+ ## Usage
+
+ 1. Start the development server:
+ ```bash
+ npm start
+
+
+
+
+
