@@ -1,0 +1,106 @@
+.note {
+  margin: 3px;
+  background-color: yellow;
+  border-radius: 7px;
+  text-align: center;
+  overflow: hidden;
+  display: inline-block;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+  position: relative;
+  height: 240px;
+  width: 240px;
+  animation-name: bounceIn;
+  animation-duration: 1.5s;
+  animation-play-state: "running";
+  border: 1px solid rgba(135, 135, 135, 0.45);
+  background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110956/note_font_pcdcst.png");
+  background-size: cover;
+}
+
+.note-button {
+  color: #333333;
+  font-size: 1.2rem;
+  opacity: 0.5;
+  z-index: 1;
+  text-shadow: 2px 2px 5px #505050;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.note-buttons {
+  visibility: hidden;
+  position: absolute;
+  display: flex;
+  align-items: baseline;
+  left: 0;
+  top: 0;
+}
+
+.note:hover  .note-buttons {
+  visibility: visible;
+}
+
+.date {
+  position: absolute;
+  right: 21px;
+  right: 10px;
+  top: 0px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.title {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  position: absolute;
+  font-size: 22px;
+  left: 3px;
+  top: 20px;
+  width: 232px;
+  height: 30px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.description {
+  font-family: "Calligraffitti", cursive;
+  font-size: 22px;
+  overflow: auto;
+  position: absolute;
+  text-align: left;
+  max-height: 180px;
+  margin: 36px 0px 0px 21px;
+  height: 176px;
+  width: 215px;
+}
+
+.delete-animation {
+  animation-name: rotateOutDownRight;
+  animation-duration: 1.1s;
+  animation-play-state: "running";
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(.1, .1, .1);
+  }
+  12% {
+    transform: scale3d(1.6, 1.6, 1.6) translate(50px, 50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1, 1, 1);
+  }
+}
+
+@keyframes rotateOutDownRight {
+  from {
+    transform-origin: right bottom;
+    opacity: 1;
+  }
+  to {
+    transform-origin: right bottom;
+    transform: rotate3d(0, 0, 1, -45deg);
+    opacity: 0;
+  }
+}

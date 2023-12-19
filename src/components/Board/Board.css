@@ -1,0 +1,66 @@
+
+  body {
+    margin: 20px;
+    background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110966/whitewall_jxi78g.jpg");
+  }
+  
+  #board {
+    border: 31px solid transparent;
+    /* height: 89vh; */
+    width: 90vw;
+    min-height: 381px;
+    min-width: 572px;
+    /*max-width: 1500px;*/
+    background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110969/cork_w2tt25.jpg");
+    /* background-size: 1300px; */
+    border-image-source: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110958/corkborder_f8cm3g.png");
+    border-image-slice: 31 29;
+    border-image-width: 31px 29px;
+    overflow: hidden;
+    position: absolute;
+  }
+  
+  #inner-board {
+    /*border: 2px dotted red;*/
+    /*min-height: 300px;*/
+    height: 93%;
+    overflow: auto;
+    overflow-x: visible;
+    /*position: relative;*/
+  }
+  
+  #pen {
+    margin: 10px auto;
+    display: block;
+    width: 500px;
+    background-color: transparent;
+    border: none;
+  }
+
+  #pen:hover{
+    animation: swing 1s ease;
+    cursor: pointer;
+  }
+
+  @keyframes swing {
+    20% {
+      transform: rotate(6deg);
+    }
+    40% {
+      transform: rotate(-4deg);
+    }
+    60% {
+      transform: rotate(2deg);
+    }
+    80% {
+      transform: rotate(-2deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+  
+  
+  
+  
+  

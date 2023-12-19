@@ -1,0 +1,104 @@
+
+textarea{
+  min-height: 50px;
+  resize: none; 
+  height: 300px;
+}
+input, textarea{
+  
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: hidden; /* Hide scrollbar initially */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+
+
+
+  
+  .modal-content {
+    background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110958/yellow_page_h0zg70.jpg");
+    background-size: contain;
+    margin: 10%;
+    padding: 20px;
+    z-index: 5;
+    min-height: 80%;
+    animation: slideIn 0.7s ease-in-out forwards;
+  }
+  .new-note-form{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin:0 12%;
+
+  }
+  
+  .modal-title {
+    font-family: Impact, Charcoal, sans-serif;
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .modal-content {
+    font-size: 25px;
+    font-family: 'Calligraffitti', cursive;
+  }
+  
+  .modal-footer button {
+    font-family: Impact, Charcoal, sans-serif;
+  }
+
+  .modal-close-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    align-self: right;
+  }
+
+.label-and-error{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+}
+
+.validation-error{
+  color: red;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1rem;
+  margin: 0px 10px;
+}
+
+.close-animation {
+  animation: slideOut 0.5s ease-in-out forwards;
+}
+
+label{
+}
+
+#submit{
+  width: fit-content;
+  align-self: flex-end;
+  margin: 20px 0px;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
