@@ -1,4 +1,3 @@
-// Note.d.js
 
 export interface NoteInterface {
   _id: string;

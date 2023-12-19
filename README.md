@@ -20,25 +20,25 @@ A simple note taking application built with React.
    ```bash
    git clone https://github.com/NoamNC/note-taker-frontend.git
 
+   ```
+
 2. Navigate to the project directory:
 
    ```bash
    cd react-note-board
 
-3. 
- ```bash
- npm install
+   ```
+
+3.
+
+```bash
+npm install
 ```
 
+## Usage
 
- ## Usage
+1.  Start the development server:
 
- 1. Start the development server:
- ```bash
- npm start
- ```
-
-
-
-
-
+```bash
+npm start
+```

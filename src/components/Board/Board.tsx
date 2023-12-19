@@ -1,11 +1,14 @@
-// Board.tsx
-
-import React, { useEffect, useState } from 'react';
-import Note from '../Note/Note';
-import { NoteInterface, NewNoteInterface } from '../Note/Note.d.js';
-import { getAllNotes, deleteNote, createNote, editNote } from '../../services/noteService';
-import NewNoteModal from '../NewNoteModal/NewNoteModal';
-import './Board.css';
+import React, { useEffect, useState } from "react";
+import Note from "../Note/Note";
+import { NoteInterface, NewNoteInterface } from "../Note/Note.d.js";
+import {
+  getAllNotes,
+  deleteNote,
+  createNote,
+  editNote,
+} from "../../services/noteService";
+import NewNoteModal from "../NewNoteModal/NewNoteModal";
+import "./Board.css";
 
 const Board: React.FC = () => {
   const [notes, setNotes] = useState<NoteInterface[]>([]);
@@ -31,7 +34,7 @@ const Board: React.FC = () => {
       setNotes((prevNotes) => [...prevNotes, createdNote]);
       closeModal();
     } catch (error) {
-      console.error('Error creating note:', error);
+      console.error("Error creating note:", error);
     }
   };
 
@@ -55,7 +58,7 @@ const Board: React.FC = () => {
 
       closeEditModal();
     } catch (error) {
-      console.error('Error editing note:', error);
+      console.error("Error editing note:", error);
     }
   };
 
@@ -86,8 +89,8 @@ const Board: React.FC = () => {
   ));
 
   return (
-    <div id='board'>
-      <button id='pen' onClick={openModal}>
+    <div id="board">
+      <button id="pen" onClick={openModal}>
         <img
           src="http://res.cloudinary.com/cspaveljb/image/upload/v1499110957/pen2_albumw.png"
           alt="pen-img"

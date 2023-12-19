@@ -1,4 +1,3 @@
-// NewNoteModal.tsx
 
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
@@ -81,7 +80,6 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({
     }
 
     if (initialNote && onEditMode) {
-      // Type check to ensure onEditMode receives the correct argument
 
       await onEditMode({
         ...initialNote,
