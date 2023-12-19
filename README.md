@@ -1,6 +1,6 @@
-# My React Note Board App
+# My React Note taking App
 
-A simple note board application built with React.
+A simple note taking application built with React.
 
 ## Table of Contents
 
@@ -28,7 +28,7 @@ A simple note board application built with React.
 3. 
  ```bash
  npm install
-
+```
 
 
  ## Usage
@@ -36,6 +36,7 @@ A simple note board application built with React.
  1. Start the development server:
  ```bash
  npm start
+ ```
 
 
 

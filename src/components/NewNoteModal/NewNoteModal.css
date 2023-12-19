@@ -76,8 +76,7 @@ input, textarea{
   animation: slideOut 0.5s ease-in-out forwards;
 }
 
-label{
-}
+
 
 #submit{
   width: fit-content;
