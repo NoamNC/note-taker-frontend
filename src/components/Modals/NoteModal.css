@@ -1,16 +1,13 @@
 textarea {
   min-height: 50px;
   resize: none;
-  height: 300px;
+  height: 400px;
   font-size: 1rem;
-  height: 100%;
-  flex-grow: 1;
 }
 input,
 textarea {
   width: 100%;
   padding: 10px;
-  box-sizing: border-box;
   overflow-y: hidden;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -78,10 +75,7 @@ input{
   align-items: baseline;
 }
 
-.form-body{
-  height: 80%;
-  flex: 1;
-}
+
 
 .validation-error {
   color: red;

@@ -10,14 +10,12 @@ interface EditNoteModalProps {
   initialNote: NoteInterface;
 }
 
-
 const EditNoteModal: React.FC<EditNoteModalProps> = ({
   isOpen,
   onClose,
   onEditMode,
   initialNote,
 }) => {
-
   const [note, setNote] = useState({ ...initialNote });
   const [closeAnimation, setCloseAnimation] = useState<boolean>(false);
   const [noteHasChanged, setNoteHasChanged] = useState<boolean>(false);
@@ -39,10 +37,9 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
         if (target.value.trim() === initialNote.title) {
           setEditTitle(false);
         }
-        return;
       });
+      return;
     }
-
     if (editBody) {
       noteBody?.focus();
       noteBody?.addEventListener("blur", (e) => {
@@ -51,9 +48,27 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
         if (target.value.trim() === initialNote.body) {
           setEditBody(false);
         }
+      });
+      return;
+    }
+    return () => {
+      noteTitle?.removeEventListener("blur", (e) => {
+        e.preventDefault();
+        const target = e.target as HTMLInputElement;
+        if (target.value.trim() === initialNote.title) {
+          setEditTitle(false);
+        }
         return;
       });
-    }
+      noteBody?.removeEventListener("blur", (e) => {
+        e.preventDefault();
+        const target = e.target as HTMLInputElement;
+        if (target.value.trim() === initialNote.body) {
+          setEditBody(false);
+        }
+      });
+      return;
+    };
   }, [editTitle, editBody]);
 
   const handleCloseModal = () => {
@@ -69,7 +84,6 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
   ) => {
     e.preventDefault();
     const { name, value } = e.target;
-
     setChanges({
       ...changes,
       [name as keyof NoteInterface]:
@@ -181,7 +195,7 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
           </button>
         )}
         {editBody ? (
-          <form className="form-body" onSubmit={handleChangeBody}>
+          <form onSubmit={handleChangeBody}>
             <textarea
               id="note-body"
               name="body"
