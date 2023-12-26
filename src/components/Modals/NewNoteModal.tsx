@@ -1,36 +1,24 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
-import { NewNoteInterface, NoteInterface } from "../Note/Note.d.js";
-import "./NewNoteModal.css";
+import "./NoteModal.css";
+import { NewNoteInterface } from "../Note/Note.d.js";
 
 interface NewNoteModalProps {
   isOpen: boolean;
   onClose: () => void;
   onCreateNote?: (newNote: NewNoteInterface) => Promise<void>;
-  onEditMode?: (editedNote: NoteInterface) => Promise<void>;
-  initialNote?: NoteInterface | null;
 }
 
 const NewNoteModal: React.FC<NewNoteModalProps> = ({
   isOpen,
   onClose,
   onCreateNote,
-  onEditMode,
-  initialNote,
 }) => {
-  Modal.setAppElement("#root");
 
   const [newNote, setNewNote] = useState({ title: "", body: "" });
   const [titleError, setTitleError] = useState<string | null>(null);
   const [bodyError, setBodyError] = useState<string | null>(null);
   const [closeAnimation, setCloseAnimation] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (initialNote) {
-      setNewNote({ title: initialNote.title, body: initialNote.body });
-    }
-  }, [initialNote]);
 
   const handleCloseModal = () => {
     setCloseAnimation(true);
@@ -53,7 +41,7 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({
     if (name === "title" && value.length > 20) {
       return;
     }
-    setNewNote((prevNote) => ({ ...prevNote, [name]: value }));
+    setNewNote((prevNote) => ({ ...prevNote, [name]: value.trim() }));
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -78,15 +66,7 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({
     if (titleError || bodyError) {
       return;
     }
-
-    if (initialNote && onEditMode) {
-
-      await onEditMode({
-        ...initialNote,
-        title: newNote.title,
-        body: newNote.body,
-      });
-    } else if (onCreateNote) {
+    if (onCreateNote) {
       await onCreateNote(newNote);
     }
     setNewNote({
@@ -97,9 +77,11 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({
   };
 
   return (
-    <Modal
+    <Modal id="new-note-modal"
       className={
-        closeAnimation ? "modal-content close-animation" : "modal-content"
+        closeAnimation
+          ? "modal-content close-new-note-animation"
+          : "modal-content open-new-note-animation"
       }
       isOpen={isOpen}
       onRequestClose={handleCloseModal}
@@ -108,9 +90,7 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({
         className="modal-close-btn fa fa-close"
         onClick={handleCloseModal}
       ></button>
-      <h2 className="modal-title">
-        {initialNote ? "Edit Note" : "Create a New Note"}
-      </h2>
+      <h2 className="modal-title">Create a New Note</h2>
       <form className="new-note-form" onSubmit={handleFormSubmit}>
         <div className="label-and-error">
           <label>Title:</label>
@@ -133,7 +113,7 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({
         />
 
         <button type="submit" id="submit">
-          {initialNote ? "Save Changes" : "Create Note"}
+          Create Note
         </button>
       </form>
     </Modal>

@@ -7,13 +7,15 @@ import {
   createNote,
   editNote,
 } from "../../services/noteService";
-import NewNoteModal from "../NewNoteModal/NewNoteModal";
+import EditNoteModal from "../Modals/EditNoteModal";
 import "./Board.css";
+import NewNoteModal from "../Modals/NewNoteModal";
 
 const Board: React.FC = () => {
   const [notes, setNotes] = useState<NoteInterface[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isNewNoteModalOpen, setIsNewNoteModalOpen] = useState<boolean>(false);
+  const [isEditNoteModalOpen, setIsEditNoteModalOpen] =
+    useState<boolean>(false);
   const [editedNote, setEditedNote] = useState<NoteInterface | null>(null);
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const Board: React.FC = () => {
     try {
       const createdNote = await createNote(newNote);
       setNotes((prevNotes) => [...prevNotes, createdNote]);
-      closeModal();
+      closeNewNoteModal();
     } catch (error) {
       console.error("Error creating note:", error);
     }
@@ -40,7 +42,7 @@ const Board: React.FC = () => {
 
   const editNoteHandler = (editedNote: NoteInterface) => {
     setEditedNote(editedNote);
-    openEditModal();
+    openEditNoteModal();
   };
 
   const handleEditNote = async (editedNote: NoteInterface) => {
@@ -56,26 +58,26 @@ const Board: React.FC = () => {
         )
       );
 
-      closeEditModal();
+      closeEditNoteModal();
     } catch (error) {
       console.error("Error editing note:", error);
     }
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openNewNoteModal = () => {
+    setIsNewNoteModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeNewNoteModal = () => {
+    setIsNewNoteModalOpen(false);
   };
 
-  const openEditModal = () => {
-    setIsEditModalOpen(true);
+  const openEditNoteModal = () => {
+    setIsEditNoteModalOpen(true);
   };
 
-  const closeEditModal = () => {
-    setIsEditModalOpen(false);
+  const closeEditNoteModal = () => {
+    setIsEditNoteModalOpen(false);
     setEditedNote(null);
   };
 
@@ -84,13 +86,13 @@ const Board: React.FC = () => {
       key={note._id}
       note={note}
       onDelete={() => deleteNoteHandler(note._id)}
-      onEdit={() => editNoteHandler(note)}
+      onOpen={() => editNoteHandler(note)}
     />
   ));
 
   return (
     <div id="board">
-      <button id="pen" onClick={openModal}>
+      <button id="pen" onClick={openNewNoteModal}>
         <img
           src="http://res.cloudinary.com/cspaveljb/image/upload/v1499110957/pen2_albumw.png"
           alt="pen-img"
@@ -99,17 +101,15 @@ const Board: React.FC = () => {
         ></img>
       </button>
       {userNotes}
-
-      <NewNoteModal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        onCreateNote={createNoteHandler}
-      />
-
-      {isEditModalOpen && (
         <NewNoteModal
-          isOpen={isEditModalOpen}
-          onClose={closeEditModal}
+          isOpen={isNewNoteModalOpen}
+          onClose={closeNewNoteModal}
+          onCreateNote={createNoteHandler}
+        />
+      {editedNote && (
+        <EditNoteModal
+          isOpen={!!editedNote&& isEditNoteModalOpen}
+          onClose={closeEditNoteModal}
           onEditMode={handleEditNote}
           initialNote={editedNote}
         />

@@ -25,8 +25,7 @@ A simple note taking application built with React.
 2. Navigate to the project directory:
 
    ```bash
-   cd react-note-board
-
+   cd note-taker-frontend
    ```
 
 3.

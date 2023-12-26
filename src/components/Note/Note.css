@@ -1,6 +1,6 @@
 .note {
-  margin: 3px;
-  background-color: yellow;
+  margin: 2%;
+  background-color: #fcef68;
   border-radius: 7px;
   text-align: center;
   overflow: hidden;
@@ -9,12 +9,16 @@
   position: relative;
   height: 240px;
   width: 240px;
-  animation-name: bounceIn;
-  animation-duration: 1.5s;
-  animation-play-state: "running";
+  animation: bounceIn 1s ease-in forwards;
   border: 1px solid rgba(135, 135, 135, 0.45);
   background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110956/note_font_pcdcst.png");
   background-size: cover;
+  transition: transform 0.3s ease; 
+}
+
+.note:hover {
+  transform: scale(1.1); 
+  cursor: pointer;
 }
 
 .note-button {
@@ -37,8 +41,8 @@
   top: 0;
 }
 
-.note:hover  .note-buttons {
-  visibility: visible;
+.note:hover .note-buttons {
+  visibility: visible; 
 }
 
 .date {
@@ -63,12 +67,11 @@
 
 .description {
   font-family: "Calligraffitti", cursive;
-  font-size: 22px;
   overflow: auto;
   position: absolute;
   text-align: left;
   max-height: 180px;
-  margin: 36px 0px 0px 21px;
+  margin: 22% 0px 0px 8%;
   height: 176px;
   width: 215px;
 }
@@ -76,7 +79,6 @@
 .delete-animation {
   animation-name: rotateOutDownRight;
   animation-duration: 1.1s;
-  animation-play-state: "running";
 }
 
 @keyframes bounceIn {

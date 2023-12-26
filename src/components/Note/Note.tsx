@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Note.css";
 import { NoteInterface } from "./Note.d.js";
 
 interface NoteProps {
   note: NoteInterface;
   onDelete: () => void;
-  onEdit: () => void;
+  onOpen: () => void;
 }
 
-const Note: React.FC<NoteProps> = ({ note, onDelete, onEdit }) => {
-  const [addDeleteAnimation, setAddDeleteAnimation] = React.useState(false);
-  const deleteNote = () => {
+const Note: React.FC<NoteProps> = ({ note, onDelete, onOpen }) => {
+  const [addDeleteAnimation, setAddDeleteAnimation] = useState(false);
+
+  const deleteNote = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation(); // Prevents the click from bubbling up to the parent elements
     setAddDeleteAnimation(true);
     setTimeout(() => {
       onDelete();
@@ -18,10 +20,7 @@ const Note: React.FC<NoteProps> = ({ note, onDelete, onEdit }) => {
   };
 
   return (
-    <div
-      key={note._id}
-      className={addDeleteAnimation ? "note delete-animation" : "note"}
-    >
+    <div className={addDeleteAnimation ? "note delete-animation" : "note"} onClick={onOpen}>
       <p className="date">
         {new Date(note.createdAt).toLocaleDateString("en-DE", {
           year: "numeric",
@@ -30,11 +29,7 @@ const Note: React.FC<NoteProps> = ({ note, onDelete, onEdit }) => {
         })}
       </p>
       <div className="note-buttons">
-        <button
-          onClick={deleteNote}
-          className="note-button fa fa-trash"
-        ></button>
-        <button onClick={onEdit} className="note-button fa fa-edit"></button>
+        <button onClick={deleteNote} className="note-button fa fa-trash"></button>
       </div>
       <p className="title">{note.title}</p>
       <p className="description">{note.body}</p>

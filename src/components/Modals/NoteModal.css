@@ -2,6 +2,9 @@ textarea {
   min-height: 50px;
   resize: none;
   height: 300px;
+  font-size: 1rem;
+  height: 100%;
+  flex-grow: 1;
 }
 input,
 textarea {
@@ -11,6 +14,9 @@ textarea {
   overflow-y: hidden;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+input{
   font-size: 1.2rem;
 }
 
@@ -20,9 +26,23 @@ textarea {
   margin: 10%;
   padding: 20px;
   z-index: 5;
-  min-height: 80%;
-  animation: slideIn 0.7s ease-in-out forwards;
+  min-height: 70%;
+  max-height: 80vh;
+  background-color: #F4EB90;
+  border-radius: 20px;
 }
+
+
+
+.edit-button {
+  background-color: transparent;
+  border: none;
+  cursor: text;
+  text-align: left;
+  font-size: initial;
+  font-family: "Calligraffitti", cursive;
+}
+
 .new-note-form {
   display: flex;
   flex-direction: column;
@@ -58,21 +78,37 @@ textarea {
   align-items: baseline;
 }
 
+.form-body{
+  height: 80%;
+  flex: 1;
+}
+
 .validation-error {
   color: red;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1rem;
   margin: 0px 10px;
 }
+.open-new-note-animation{
+  animation: slideIn 0.7s ease-in-out forwards;
 
-.close-animation {
+}
+.close-new-note-animation {
   animation: slideOut 0.5s ease-in-out forwards;
+}
+
+.open-edit-note-animation{
+  animation: blowUpModal .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+.close-edit-note-animation {
+  animation: blowUpModalTwo .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 }
 
 #submit {
   width: fit-content;
-  align-self: flex-end;
-  margin: 20px 0px;
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
 }
 
 @keyframes slideIn {
@@ -90,5 +126,24 @@ textarea {
   }
   100% {
     transform: translateY(-100%);
+  }
+}
+
+
+@keyframes blowUpModal {
+  0% {
+    transform:scale(0);
+  }
+  100% {
+    transform:scale(1);
+  }
+}
+
+@keyframes blowUpModalTwo {
+  0% {
+    transform:scale(1);
+  }
+  100% {
+    transform:scale(0);
   }
 }
