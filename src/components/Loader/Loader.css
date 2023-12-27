@@ -1,0 +1,155 @@
+#loader {
+  width: 100%;
+  min-height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  animation: loader-animation 3s 6s linear ;
+  background-color: #282c34;
+  animation-fill-mode: forwards;
+  font-family: "Source Code Pro", monospace;
+}
+
+.code {
+  animation: code-animation 2s 2s steps(30, end);
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation-fill-mode: forwards;
+  height: 0px;
+}
+
+.code-line {
+  display: flex;
+}
+
+.space {
+  height: 10px;
+}
+.purple {
+  color: rgb(216, 112, 174);
+  margin: 0 5px;
+  display: block;
+}
+
+.orange {
+  display: block;
+  margin: 0 5px;
+  color: rgb(255, 157, 0);
+}
+.yellow {
+  margin: 0 5px;
+  display: block;
+  color: rgb(249, 207, 68);
+}
+.light-blue {
+  margin: 0 5px;
+  display: block;
+  color: rgb(120, 207, 247);
+}
+.dark-blue {
+  margin: 0 5px;
+  display: block;
+  color: rgb(15, 173, 247);
+}
+
+.green {
+  display: block;
+  color: rgb(0, 161, 105);
+}
+.gray {
+  display: block;
+  color: rgb(78, 80, 80);
+}
+.white {
+  display: block;
+  color: rgb(255, 255, 255);
+}
+
+.tab-1 {
+  margin-left: 10px;
+}
+.tab-2 {
+  margin-left: 20px;
+}
+.tab-3 {
+  margin-left: 30px;
+}
+.tab-4 {
+  margin-left: 40px;
+}
+.tab-5 {
+  margin-left: 50px;
+}
+.tab-6 {
+  margin-right: 60px;
+}
+
+.typewriter {
+  display: flex;
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  color: rgb(255, 255, 255);
+  max-width: fit-content;
+  min-width: 0px;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite,
+    disapear 0s 1.5s step-end;
+  animation-fill-mode: forwards;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+@keyframes disapear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    border-color: transparent;
+  }
+}
+
+@keyframes loader-animation {
+  from {
+    margin: 0;
+    transform: rotate3d(0, 1, 0, 0deg);
+    opacity: 1;
+  }
+  to {
+    margin: 10px;
+    transform: rotate3d(0, 1, 0, -180deg);
+    background-color: aliceblue;
+    display: none;
+    opacity: 0;
+  }
+}
+@keyframes code-animation {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 1000px;
+  }
+}

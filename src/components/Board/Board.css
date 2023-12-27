@@ -1,20 +1,27 @@
 
   body {
-    margin: 20px;
-    background-image: url("https://c8.alamy.com/comp/2GJN6T8/white-rough-whitewashed-wall-texture-texture-of-gray-concrete-wall-2GJN6T8.jpg");
+    margin: 20px auto;
+    background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110966/whitewall_jxi78g.jpg");
   }
   
   #board {
-    border: 31px solid transparent;
+    border: 1rem solid transparent;
+    padding: 1rem;
     width: 90vw;
-    min-height: 381px;
-    min-width: 572px;
+    margin: auto;
+    min-height: 381px; 
+     min-width: 572px;
     background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110969/cork_w2tt25.jpg");
     border-image-source: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110958/corkborder_f8cm3g.png");
-    border-image-slice: 31 29;
-    border-image-width: 31px 29px;
-    overflow: hidden;
-    position: absolute;
+    border-image-slice: 20%;
+    border-image-width: 20%;
+    /* border-image-slice: 31 29;
+    border-image-width: 31px 29px; */
+    /* overflow: hidden; */
+    /* position: absolute; */
+    animation: app-animation 3s linear;
+    animation-fill-mode: forwards;
+    animation-delay: 6s;
   }
   
   #inner-board {
@@ -58,3 +65,36 @@
   
   
   
+
+
+
+  
+  @keyframes app-animation {
+    from {
+      transform: rotate3d(0, 1, 0, -180deg);
+    }
+    to {
+      transform: rotate3d(0, 1, 0, 0deg);
+    }
+  }
+  
+
+  @media all and (max-width: 767px) {
+    body{
+      margin: 0;
+    }
+    #board{
+      min-height: 200px; 
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-image-width:10% 40%;
+  width: 83%;
+    }
+    #pen{
+      width: 100%;
+    }
+
+  }
