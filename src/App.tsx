@@ -4,6 +4,8 @@ import Loader from "./components/Loader/Loader";
 
 Modal.setAppElement('#root');
 function App() {
+
+  
   return (
     <div className="App">
       <Board />

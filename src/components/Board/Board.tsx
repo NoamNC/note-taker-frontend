@@ -10,6 +10,7 @@ import {
 import EditNoteModal from "../Modals/EditNoteModal";
 import "./Board.css";
 import NewNoteModal from "../Modals/NewNoteModal";
+import { AxiosError } from "axios";
 
 const Board: React.FC = () => {
   const [notes, setNotes] = useState<NoteInterface[]>([]);
@@ -17,11 +18,17 @@ const Board: React.FC = () => {
   const [isEditNoteModalOpen, setIsEditNoteModalOpen] =
     useState<boolean>(false);
   const [editedNote, setEditedNote] = useState<NoteInterface | null>(null);
+  // const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
-    getAllNotes().then((notes) => {
-      setNotes(notes);
-    });
+    getAllNotes()
+      .then((notes) => {
+        setNotes(notes);
+      })
+      .catch((error:AxiosError) => {
+        const errorNote = createErrorNote(error)
+        setNotes([errorNote])
+      });
   }, []);
 
   const deleteNoteHandler = (_id: string) => {
@@ -30,13 +37,28 @@ const Board: React.FC = () => {
     });
   };
 
+
+const createErrorNote = (error: AxiosError) => {
+  const errorNote = {
+    _id: `${notes.length+1}`,
+    title: `${error.code}`,
+    body: error.message,
+    createdAt: new Date()
+  } as NoteInterface
+  return errorNote
+}
+
   const createNoteHandler = async (newNote: NewNoteInterface) => {
     try {
       const createdNote = await createNote(newNote);
-      setNotes((prevNotes) => [...prevNotes, createdNote]);
+      setNotes((prevNotes) => [createdNote, ...prevNotes]);
       closeNewNoteModal();
     } catch (error) {
-      console.error("Error creating note:", error);
+      const axiosError = error as AxiosError;
+      const errorNote = createErrorNote(axiosError) as NoteInterface
+      setNotes((prevNotes) => [errorNote, ...prevNotes]);
+
+      closeNewNoteModal();
     }
   };
 
@@ -92,23 +114,26 @@ const Board: React.FC = () => {
 
   return (
     <div id="board">
-      <button id="pen" onClick={openNewNoteModal}>
-        <img
+      <button className="pen" onClick={openNewNoteModal}>
+        {/* <img
           src="http://res.cloudinary.com/cspaveljb/image/upload/v1499110957/pen2_albumw.png"
           alt="pen-img"
           id="pen"
           data-toggle="modal"
-        ></img>
+        ></img> */}
+        <span className="pen-text">
+       create new note
+        </span>
       </button>
       {userNotes}
-        <NewNoteModal
-          isOpen={isNewNoteModalOpen}
-          onClose={closeNewNoteModal}
-          onCreateNote={createNoteHandler}
-        />
+      <NewNoteModal
+        isOpen={isNewNoteModalOpen}
+        onClose={closeNewNoteModal}
+        onCreateNote={createNoteHandler}
+      />
       {editedNote && (
         <EditNoteModal
-          isOpen={!!editedNote&& isEditNoteModalOpen}
+          isOpen={!!editedNote && isEditNoteModalOpen}
           onClose={closeEditNoteModal}
           onEditMode={handleEditNote}
           initialNote={editedNote}

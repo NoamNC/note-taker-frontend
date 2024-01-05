@@ -1,5 +1,4 @@
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -7,6 +6,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-width: 100vw;
   min-height: 100vh;
+  margin: 0;
+  background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110966/whitewall_jxi78g.jpg");
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+  min-height: 100%;
 }
 
 code {
@@ -15,7 +32,16 @@ code {
 }
 
 p,
-span, h1, h2 {
+span,
+h1,
+h2 {
   margin-block-start: 0;
   margin-block-end: 0;
+}
+
+
+@media all and (max-width: 767px) {
+  .App {
+    margin: 0;
+  }
 }

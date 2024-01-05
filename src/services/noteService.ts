@@ -1,15 +1,15 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { NoteInterface, NewNoteInterface } from "../components/Note/Note.d.js";
 
 const BASE_URL = "http://localhost:5001/notes";
 
 const getAllNotes = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/all`);
+    const response = await axios.get(`${BASE_URL}/all`, { timeout: 7500 });
     return response.data;
   } catch (error) {
-    console.error("Error fetching notes:", error);
-    throw error;
+    const axiosError = error as AxiosError;
+    throw axiosError;
   }
 };
 
@@ -18,9 +18,8 @@ const getNoteById = async (id: string) => {
     const response = await axios.get(`${BASE_URL}/${id}`);
     return response.data;
   } catch (error) {
-    console.error("Error fetching note by ID:", error);
-    throw error;
-  }
+    const axiosError = error as AxiosError;
+    throw axiosError;  }
 };
 
 const createNote = async (
@@ -31,14 +30,13 @@ const createNote = async (
       headers: {
         "Content-Type": "application/json",
       },
+      timeout: 1000 
     });
-
     const createdNote: NoteInterface = response.data;
-
     return createdNote;
   } catch (error) {
-    console.error("Error creating note:", error);
-    throw error;
+    const axiosError = error as AxiosError;
+    throw axiosError;
   }
 };
 
@@ -50,8 +48,8 @@ const editNote = async (
     const response = await axios.put(`${BASE_URL}/${_id}`, updatedNoteData);
     return response.data;
   } catch (error) {
-    console.error("Error editing note:", error);
-    throw error;
+    const axiosError = error as AxiosError;
+    throw axiosError;
   }
 };
 
@@ -60,8 +58,8 @@ const deleteNote = async (id: string) => {
     const response = await axios.delete(`${BASE_URL}/${id}`);
     return response.data;
   } catch (error) {
-    console.error("Error deleting note:", error);
-    throw error;
+    const axiosError = error as AxiosError;
+    throw axiosError;
   }
 };
 

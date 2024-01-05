@@ -1,100 +1,134 @@
 
+
+#board {
+  border: 1rem solid transparent;
+  padding: 1rem;
+  width: 90vw;
+  margin: auto;
+  min-height: 381px;
+  min-width: 572px;
+  background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110969/cork_w2tt25.jpg");
+  border-image-source: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110958/corkborder_f8cm3g.png");
+  border-image-slice: 20%;
+  border-image-width: 20%;
+  animation: app-animation 3s linear;
+  animation-fill-mode: forwards;
+  animation-delay: 6s;
+  background-color: #c17f49;
+  border-color: #55311a;
+}
+
+#inner-board {
+  height: 93%;
+  overflow: auto;
+  overflow-x: visible;
+}
+
+.pen {
+  margin: 10px auto;
+  display: block;
+  background-color: transparent;
+  border: none;
+}
+
+.pen {
+  margin: 20px auto;
+  display: block;
+  position: relative;
+  background-color: transparent;
+  border: none;
+  background-image: radial-gradient(
+      50px 14px at 9% 50%,
+      #111,
+      #111 50%,
+      transparent 50%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent,
+      transparent 7%,
+      #111 7%,
+      #111 20%,
+      rgba(170, 170, 170, 0.768) 20%,
+      rgba(170, 170, 170, 0.739) 60%,
+      #444 60%,
+      #444 87%,
+      transparent 87%,
+      transparent
+    ),
+    radial-gradient(
+      60px 18px at 89% 50%,
+      rgba(170, 170, 170, 0.877),
+      rgba(170, 170, 170, 0.803) 50%,
+      transparent 50%,
+      transparent
+    );
+  width: 350px;
+  height: 20px;
+}
+
+.pen:hover {
+  animation: swing 1s ease;
+  cursor: pointer;
+}
+
+.pen-text {
+  position: absolute;
+  font-size: 1.3rem;
+  font-family: "Permanent Marker", cursive;
+  color: #111;
+  text-shadow: 1px 1px 1px #fff;
+  padding: 0;
+  top: -8px;
+  left: 21%;
+}
+
+@keyframes swing {
+  20% {
+    transform: rotate(6deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  60% {
+    transform: rotate(2deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes app-animation {
+  from {
+    transform: rotate3d(0, 1, 0, -180deg);
+  }
+  to {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+}
+
+@media all and (max-width: 767px) {
   body {
-    margin: 20px auto;
-    background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110966/whitewall_jxi78g.jpg");
+    margin: 0;
   }
-  
   #board {
-    border: 1rem solid transparent;
-    padding: 1rem;
-    width: 90vw;
-    margin: auto;
-    min-height: 381px; 
-     min-width: 572px;
-    background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110969/cork_w2tt25.jpg");
-    border-image-source: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110958/corkborder_f8cm3g.png");
-    border-image-slice: 20%;
-    border-image-width: 20%;
-    /* border-image-slice: 31 29;
-    border-image-width: 31px 29px; */
-    /* overflow: hidden; */
-    /* position: absolute; */
-    animation: app-animation 3s linear;
-    animation-fill-mode: forwards;
-    animation-delay: 6s;
+    min-height: 200px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-image-width: 10% 40%;
+    width: 83%;
   }
-  
-  #inner-board {
-    height: 93%;
-    overflow: auto;
-    overflow-x: visible;
+  .pen {
+    width: 100%;
   }
-  
-  #pen {
-    margin: 10px auto;
-    display: block;
-    width: 500px;
-    background-color: transparent;
-    border: none;
+  .pen-text {
+    font-size: 1.2rem;
   }
-
-  #pen:hover{
-    animation: swing 1s ease;
-    cursor: pointer;
-  }
-
-  @keyframes swing {
-    20% {
-      transform: rotate(6deg);
-    }
-    40% {
-      transform: rotate(-4deg);
-    }
-    60% {
-      transform: rotate(2deg);
-    }
-    80% {
-      transform: rotate(-2deg);
-    }
-    to {
-      transform: rotate(0deg);
-    }
-  }
-  
-  
-  
-  
-  
-
-
-
-  
-  @keyframes app-animation {
-    from {
-      transform: rotate3d(0, 1, 0, -180deg);
-    }
-    to {
-      transform: rotate3d(0, 1, 0, 0deg);
-    }
-  }
-  
-
-  @media all and (max-width: 767px) {
-    body{
-      margin: 0;
-    }
-    #board{
-      min-height: 200px; 
-      min-width: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border-image-width:10% 40%;
-  width: 83%;
-    }
-    #pen{
-      width: 100%;
-    }
-
-  }
+}

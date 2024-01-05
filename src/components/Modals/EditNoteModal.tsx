@@ -156,12 +156,16 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
       isOpen={isOpen}
       onRequestClose={handleCloseModal}
     >
-      <button
-        className="modal-close-btn fa fa-close"
-        onClick={handleCloseModal}
-      ></button>
+      <div className="edit-note-header">
+        <button className="modal-close-btn" onClick={handleCloseModal}>
+          <img src={process.env.PUBLIC_URL + "icons/x-solid.svg"} alt="close" />
+        </button>
+        <span className="explanation">
+          *Edit the note by clicking on the title or body
+        </span>
+      </div>
 
-      <div className="new-note-form">
+      <div className="edit-note-form">
         {editTitle ? (
           <form onSubmit={handleChangeTitle}>
             <input
@@ -173,14 +177,20 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
             />
             {changes.title && (
               <div>
+                <button aria-label="undo" onClick={handleRevertTitle}>
+                  <img
+                    src={process.env.PUBLIC_URL + "icons/rotate-left-solid.svg"}
+                    alt="undo"
+                  />
+                </button>
                 {note.title.trim().length > 0 && (
                   <button type="submit" onClick={handleChangeTitle}>
-                    <i className="fa fa-check"></i>
+                    <img
+                      src={process.env.PUBLIC_URL + "icons/check-solid.svg"}
+                      alt="approve"
+                    />
                   </button>
                 )}
-                <button onClick={handleRevertTitle}>
-                  <i className="fa fa-undo"></i>
-                </button>
               </div>
             )}
           </form>
@@ -204,14 +214,20 @@ const EditNoteModal: React.FC<EditNoteModalProps> = ({
             />
             {changes.body && (
               <div>
+                <button onClick={handleRevertBody}>
+                  <img
+                    src={process.env.PUBLIC_URL + "icons/rotate-left-solid.svg"}
+                    alt="undo"
+                  />{" "}
+                </button>
                 {note.body.trim().length > 0 && (
                   <button type="submit" onClick={handleChangeBody}>
-                    <i className="fa fa-check"></i>
+                    <img
+                      src={process.env.PUBLIC_URL + "icons/check-solid.svg"}
+                      alt="approve"
+                    />{" "}
                   </button>
                 )}
-                <button onClick={handleRevertBody}>
-                  <i className="fa fa-undo"></i>
-                </button>
               </div>
             )}
           </form>

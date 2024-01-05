@@ -29,7 +29,9 @@ const Note: React.FC<NoteProps> = ({ note, onDelete, onOpen }) => {
         })}
       </p>
       <div className="note-buttons">
-        <button onClick={deleteNote} className="note-button fa fa-trash"></button>
+        <button onClick={deleteNote} className="note-button" >
+          <img src={process.env.PUBLIC_URL + 'icons/trash-can-solid.svg'} alt="delete" />
+        </button>
       </div>
       <p className="title">{note.title}</p>
       <p className="description">{note.body}</p>
