@@ -50,7 +50,7 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({
     if (name === "title" && value.length > 20) {
       return;
     }
-    setNewNote((prevNote) => ({ ...prevNote, [name]: value.trim() }));
+    setNewNote((prevNote) => ({ ...prevNote, [name]: value }));
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
@@ -72,7 +72,7 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({
     if (titleError || bodyError) {
       return;
     }
-    await onCreateNote(newNote);
+    await onCreateNote({title:newNote.title.trim(), body: newNote.body.trim()});
     handleCloseModal();
   };
 
